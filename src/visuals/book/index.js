@@ -7,9 +7,9 @@ const createMarkup = (markup) => ({ __html: markup });
 
 const Book = ({ match: { params } }) => {
   const [bookInfo, setBookInfo] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
   useEffect(() => {
-    setIsLoading(true);
+    setIsFetching(true);
     axios
       .get(`https://www.googleapis.com/books/v1/volumes/${params.ID}`)
       .then((response) => {
@@ -19,21 +19,23 @@ const Book = ({ match: { params } }) => {
         setBookInfo({});
       })
       .finally(() => {
-        setIsLoading(false);
+        setIsFetching(false);
       });
   }, [params.ID]);
 
-  let loadingTxt = "";
-  if (isLoading) {
-    loadingTxt = <p>Loading books...</p>;
+  let jsxStr = "";
+  if (isFetching) {
+    jsxStr = <p>Loading...</p>;
   }
 
   if (!isEmpty(bookInfo)) {
-    let { title, subtitle, imageLinks, description } = bookInfo.volumeInfo;
+    let { title, subtitle, imageLinks, description, author } =
+      bookInfo.volumeInfo;
 
-    loadingTxt = (
+    jsxStr = (
       <div className="book-card">
         <h1>{title}</h1>
+        <h2>{author}</h2>
         <h3>{subtitle}</h3>
         <div className="book-card--body">
           <figure className="book-card--thumbnail">
@@ -56,7 +58,7 @@ const Book = ({ match: { params } }) => {
 
   return (
     <div id="book" className="page">
-      <div className="container">{loadingTxt}</div>
+      <div className="container">{jsxStr}</div>
     </div>
   );
 };
