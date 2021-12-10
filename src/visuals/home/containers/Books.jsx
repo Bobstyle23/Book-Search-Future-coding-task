@@ -9,6 +9,7 @@ const renderBooksList = (data, query) => {
     return null;
   }
   let { items: books, totalItems } = data;
+  console.log(data.books);
 
   return (
     <>
@@ -21,11 +22,6 @@ const renderBooksList = (data, query) => {
           <BookCard key={books.id} book={books} />
         ))}
       </div>
-      {/* <div className="book-list">
-        {books.map((books) => (
-          <Categories key={books.id} book={books} />
-        ))}
-      </div> */}
     </>
   );
 };
