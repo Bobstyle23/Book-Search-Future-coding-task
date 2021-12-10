@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import isEmpty from "lodash/isEmpty";
 import "./book.css";
-import { Spinner, Card, Container, Col, Row } from "react-bootstrap";
+import { Spinner, Card, Container, Col, Row, Button } from "react-bootstrap";
 const createMarkup = (markup) => ({ __html: markup });
 
 const Book = ({ match: { params } }) => {
@@ -29,8 +29,6 @@ const Book = ({ match: { params } }) => {
   }
 
   if (!isEmpty(bookInfo)) {
-    // let { title, subtitle, imageLinks, description, authors } =
-    //   bookInfo.volumeInfo;
     let {
       title,
       imageLinks,
@@ -43,6 +41,7 @@ const Book = ({ match: { params } }) => {
       publisher,
       printType,
     } = bookInfo.volumeInfo;
+    console.log(bookInfo.volumeInfo.categories);
     let { country, retailPrice } = bookInfo.saleInfo;
     jsxStr = (
       <Container>
@@ -61,13 +60,7 @@ const Book = ({ match: { params } }) => {
                 <Card.Subtitle className="mb-2 text-muted">
                   Author: {authors}
                 </Card.Subtitle>
-                {retailPrice ? (
-                  <Card.Text className="book--description">
-                    Price: {retailPrice.amount} {retailPrice.currencyCode}
-                  </Card.Text>
-                ) : (
-                  ""
-                )}
+
                 <Card.Text className="mb-2 text-muted">
                   Print Type: {printType}
                 </Card.Text>
@@ -77,7 +70,7 @@ const Book = ({ match: { params } }) => {
                   Pages: {pageCount}
                 </Card.Text>
                 <Card.Text className="book--description">
-                  Category: {categories[0]}
+                  Category: {categories}
                 </Card.Text>
                 <Card.Text className="book--description">
                   Language: {language}
@@ -85,6 +78,13 @@ const Book = ({ match: { params } }) => {
                 <Card.Text className="book--description">
                   Selling Country: {country}
                 </Card.Text>
+                {retailPrice ? (
+                  <Card.Text className="book--description">
+                    Price: {retailPrice.amount} {retailPrice.currencyCode}
+                  </Card.Text>
+                ) : (
+                  ""
+                )}
                 <Card.Text>
                   <p style={{ fontWeight: "bold" }}>Description:</p>{" "}
                   {description}

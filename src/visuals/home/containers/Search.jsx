@@ -3,12 +3,8 @@ import {
   Button,
   Form,
   Container,
-  Row,
-  InputGroup,
   Dropdown,
   DropdownButton,
-  FormControl,
-  Col,
 } from "react-bootstrap";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -30,80 +26,51 @@ const Search = ({ getBooks, query }) => {
   return (
     <div className="search-books">
       <Container>
-        <Row>
-          <Form className="search-books--form" onSubmit={handleOnSubmit}>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Control
-                type="text"
-                onChange={onInputChange}
-                placeholder="Search..."
-              />
-            </Form.Group>
-            <Button variant="primary" type="submit">
-              Search
-            </Button>
-          </Form>
-        </Row>
+        <Form className="search-books--form" onSubmit={handleOnSubmit}>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Control
+              type="text"
+              onChange={onInputChange}
+              placeholder="Search..."
+            />
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Search
+          </Button>
+        </Form>
 
-        <Row>
-          {/* <Form className="search-books--form" onSubmit={handleOnSubmit}>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Control
-                type="text"
-                onChange={onInputChange}
-                placeholder="Search..."
-              />
-            </Form.Group>
-            <Button variant="primary" type="submit">
-              Search
-            </Button>
-          </Form> */}
+        <Form className="search-books--form">
+          <Form.Group>
+            <Form.Control type="text" placeholder="Categories" />
+          </Form.Group>
+          <DropdownButton
+            variant="outline-primary"
+            title="All"
+            id="input-group-dropdown-2"
+            align="end"
+          >
+            <Dropdown.Item href="#">Art</Dropdown.Item>
+            <Dropdown.Item href="#">Biography</Dropdown.Item>
+            <Dropdown.Item href="#">Computers</Dropdown.Item>
+            <Dropdown.Item href="#">History</Dropdown.Item>
+            <Dropdown.Item href="#">Medical</Dropdown.Item>
+            <Dropdown.Item href="#">Poetry</Dropdown.Item>
+          </DropdownButton>
+        </Form>
 
-          <Col>
-            <Form className="categories">
-              <Form.Group controlId="formBasicEmail">
-                <Form.Control
-                  type="text"
-                  // onChange={onInputChange}
-                  placeholder="Categories"
-                />
-              </Form.Group>
-              <DropdownButton
-                variant="outline-primary"
-                title="All"
-                id="input-group-dropdown-2"
-                align="end"
-              >
-                <Dropdown.Item href="#">Art</Dropdown.Item>
-                <Dropdown.Item href="#">Biography</Dropdown.Item>
-                <Dropdown.Item href="#">Computers</Dropdown.Item>
-                <Dropdown.Item href="#">History</Dropdown.Item>
-                <Dropdown.Item href="#">Medical</Dropdown.Item>
-                <Dropdown.Item href="#">Poetry</Dropdown.Item>
-              </DropdownButton>
-            </Form>
-          </Col>
-
-          <Col>
-            <Form className="sorting">
-              <Form.Group controlId="formBasicEmail">
-                <Form.Control
-                  type="text"
-                  onChange={onInputChange}
-                  placeholder="Sort by"
-                />
-              </Form.Group>
-              <DropdownButton
-                variant="outline-primary"
-                title="Relevance"
-                id="input-group-dropdown-2"
-                align="end"
-              >
-                <Dropdown.Item href="#">Newest</Dropdown.Item>
-              </DropdownButton>
-            </Form>
-          </Col>
-        </Row>
+        <Form className="search-books--form">
+          <Form.Group>
+            <Form.Control type="text" placeholder="Sort by" />
+          </Form.Group>
+          <DropdownButton
+            variant="outline-primary"
+            title="Relevance"
+            id="input-group-dropdown-2"
+            align="end"
+          >
+            <Dropdown.Item href="#">Newest</Dropdown.Item>
+          </DropdownButton>
+        </Form>
       </Container>
     </div>
   );

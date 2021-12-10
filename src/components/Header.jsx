@@ -3,8 +3,8 @@ import Navbar from "react-bootstrap/Navbar";
 
 const Header = () => (
   <header id="app-header">
-    <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="#/">Book Finder</Navbar.Brand>
+    <Navbar bg="primary" variant="dark">
+      <Navbar.Brand href="#/">Book Search</Navbar.Brand>
     </Navbar>
   </header>
 );

@@ -3,12 +3,12 @@ import { connect } from "react-redux";
 import isEmpty from "lodash/isEmpty";
 import BookCard from "../components/BookCard";
 import { Spinner } from "react-bootstrap";
+// import Categories from "../components/Categories";
 const renderBooksList = (data, query) => {
   if (isEmpty(data)) {
     return null;
   }
   let { items: books, totalItems } = data;
-  console.log(data);
 
   return (
     <>
@@ -21,6 +21,11 @@ const renderBooksList = (data, query) => {
           <BookCard key={books.id} book={books} />
         ))}
       </div>
+      {/* <div className="book-list">
+        {books.map((books) => (
+          <Categories key={books.id} book={books} />
+        ))}
+      </div> */}
     </>
   );
 };
