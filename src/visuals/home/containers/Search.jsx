@@ -1,6 +1,15 @@
 import React from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import {
+  Button,
+  Form,
+  Container,
+  Row,
+  InputGroup,
+  Dropdown,
+  DropdownButton,
+  FormControl,
+  Col,
+} from "react-bootstrap";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getBooks } from "../actions";
@@ -20,21 +29,82 @@ const Search = ({ getBooks, query }) => {
 
   return (
     <div className="search-books">
-      <Form className="search-books--form" onSubmit={handleOnSubmit}>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Control
-            type="text"
-            onChange={onInputChange}
-            placeholder="Harry Potter, Food and Love"
-          />
-          <Form.Text className="text-muted">
-            Search the world's most comprehensive index of full-text books.
-          </Form.Text>
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Search
-        </Button>
-      </Form>
+      <Container>
+        <Row>
+          <Form className="search-books--form" onSubmit={handleOnSubmit}>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Control
+                type="text"
+                onChange={onInputChange}
+                placeholder="Search..."
+              />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Search
+            </Button>
+          </Form>
+        </Row>
+
+        <Row>
+          {/* <Form className="search-books--form" onSubmit={handleOnSubmit}>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Control
+                type="text"
+                onChange={onInputChange}
+                placeholder="Search..."
+              />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Search
+            </Button>
+          </Form> */}
+
+          <Col>
+            <Form className="categories">
+              <Form.Group controlId="formBasicEmail">
+                <Form.Control
+                  type="text"
+                  // onChange={onInputChange}
+                  placeholder="Categories"
+                />
+              </Form.Group>
+              <DropdownButton
+                variant="outline-primary"
+                title="All"
+                id="input-group-dropdown-2"
+                align="end"
+              >
+                <Dropdown.Item href="#">Art</Dropdown.Item>
+                <Dropdown.Item href="#">Biography</Dropdown.Item>
+                <Dropdown.Item href="#">Computers</Dropdown.Item>
+                <Dropdown.Item href="#">History</Dropdown.Item>
+                <Dropdown.Item href="#">Medical</Dropdown.Item>
+                <Dropdown.Item href="#">Poetry</Dropdown.Item>
+              </DropdownButton>
+            </Form>
+          </Col>
+
+          <Col>
+            <Form className="sorting">
+              <Form.Group controlId="formBasicEmail">
+                <Form.Control
+                  type="text"
+                  onChange={onInputChange}
+                  placeholder="Sort by"
+                />
+              </Form.Group>
+              <DropdownButton
+                variant="outline-primary"
+                title="Relevance"
+                id="input-group-dropdown-2"
+                align="end"
+              >
+                <Dropdown.Item href="#">Newest</Dropdown.Item>
+              </DropdownButton>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };

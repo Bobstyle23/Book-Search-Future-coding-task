@@ -1,9 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import isEmpty from "lodash/isEmpty";
-
 import BookCard from "../components/BookCard";
-
+import { Spinner } from "react-bootstrap";
 const renderBooksList = (data, query) => {
   if (isEmpty(data)) {
     return null;
@@ -13,11 +12,13 @@ const renderBooksList = (data, query) => {
 
   return (
     <>
-      <h3>Search results for: {query}</h3>
-      <p>Total results: {totalItems}</p>
+      <div style={{ textAlign: "center" }}>
+        <h3>Search results for: "{query}"</h3>
+        <p>Total results: {totalItems}</p>
+      </div>
       <div className="books-list">
-        {books.map((book) => (
-          <BookCard key={book.id} book={book} />
+        {books.map((books) => (
+          <BookCard key={books.id} book={books} />
         ))}
       </div>
     </>
@@ -28,7 +29,7 @@ const Books = ({ data, isFetching, query, error }) => {
   let jsxStr = "";
 
   if (isFetching) {
-    jsxStr = <p>Loading books...</p>;
+    jsxStr = <Spinner animation="border" variant="primary" />;
   } else if (!isEmpty(error)) {
     jsxStr = (
       <h1 style={{ color: "red", textAlign: "center" }}>
